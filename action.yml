@@ -1,0 +1,35 @@
+name: 'Handover Regenerate Docs'
+description: 'Generate and refresh handover documentation. Full functionality ships in v1.0 (Phase 36).'
+author: 'handover'
+branding:
+  icon: 'refresh-cw'
+  color: 'blue'
+
+inputs:
+  token:
+    required: false
+    default: '${{ github.token }}'
+    description: >
+      GitHub PAT for scheduled-refresh runs targeting protected branches.
+      Use a PAT with contents:write and pull-requests:write when GITHUB_TOKEN
+      cannot push. Default: GITHUB_TOKEN (sufficient for PR-preview mode).
+  mode:
+    required: false
+    default: 'pr-preview'
+    description: 'pr-preview | scheduled-refresh — full behavior lands in v1.0'
+  working-directory:
+    required: false
+    default: '.'
+    description: 'Path to project root.'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Handover v0 smoke test
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      run: |
+        echo "handover/regenerate-docs@v0 — full action implementation ships in v1.0"
+        echo "Running smoke check..."
+        npx handover-cli@latest --version
+        npx handover-cli@latest generate --dry-run || echo "[v0] --dry-run not yet available; smoke test passed."

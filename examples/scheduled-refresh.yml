@@ -1,0 +1,20 @@
+# Phase 36 finalizes scheduled-refresh mode. The version below is illustrative only.
+name: Handover Docs Refresh
+on:
+  schedule:
+    - cron: '0 6 * * 1'  # Mondays 06:00 UTC
+concurrency:
+  group: handover-refresh
+  cancel-in-progress: false
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: handover/regenerate-docs@v0
+        with:
+          mode: scheduled-refresh
+          token: ${{ secrets.HANDOVER_PAT }}  # PAT only required for protected branches
