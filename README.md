@@ -33,5 +33,5 @@ it via the workflow:
 
 ## See also
 
-- Handover CLI: <https://github.com/handover/handover>
-- Roadmap: <https://github.com/handover/handover/blob/main/.planning/ROADMAP.md>
+- Handover CLI: <https://github.com/farce1/handover>
+- Roadmap: <https://github.com/farce1/handover/blob/main/.planning/ROADMAP.md>
